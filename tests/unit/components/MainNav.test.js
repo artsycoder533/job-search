@@ -22,7 +22,40 @@ describe("MainNav", () => {
       "How We Hire",
       "Students",
       "Jobs"
-    ])
-    console.log(navigationMenuTexts);
-  })
+    ]);
+  });
+});
+
+describe("when user is logged out", () => {
+  it("prompts user to sign in", () => {
+    const wrapper = mount(MainNav, {
+      data() {
+        return {
+          isLoggedIn: false,
+        };
+      },
+    });
+    const loginButton = wrapper.findComponent({ name: "ActionButton"});
+    const profileImage = wrapper.findComponent({ name: "ProfileImage"});
+    //returns a boolean 
+    expect(loginButton.exists()).toBe(true);
+    expect(profileImage.exists()).toBe(false);
+  });
+});
+
+describe("when user logs in", () => {
+  it("displays user profile image", () => {
+    const wrapper = mount(MainNav, {
+      data() {
+        return {
+          isLoggedIn: true,
+        };
+      },
+    });
+    const loginButton = wrapper.findComponent({ name: "ActionButton"});
+    const profileImage = wrapper.findComponent({ name: "ProfileImage"});
+    //returns a boolean 
+    expect(loginButton.exists()).toBe(false);
+    expect(profileImage.exists()).toBe(true);
+  });
 });
