@@ -5,19 +5,27 @@
         <a :href="url" class="flex items-center h-full text-xl">{{ company }}</a>
         <nav class="h-full ml-12">
           <ul class="flex h-full p-0 m-0 list-none">
-            <li v-for="menuItem in menuItems" :key="menuItem" class="h-full ml-9 first:ml-0"> 
+            <li v-for="menuItem in menuItems" :key="menuItem" class="h-full ml-9 first:ml-0" data-test="main-nav-list-item"> 
               <a href="" class="flex items-center h-full py-2.5 ">{{ menuItem }}</a>
             </li>
           </ul>
         </nav>
+        <div class="flex items-center h-full ml-auto">
+          <action-button />
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script>
+import ActionButton from "@/components/ActionButton.vue";
+
 export default {
   name: "MainNav",
+  components: {
+    ActionButton
+  },
   data() {
     return {
       company: "Natasha's Careers",
