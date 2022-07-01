@@ -40,6 +40,7 @@ describe("when user logs in", () => {
   it("displays user profile image", async() => {
     const wrapper = mount(MainNav);
     let profileImage = wrapper.find("[data-test='profile-image']");
+    //check that profile image is not shown initially
     expect(profileImage.exists()).toBe(false);
     //simulate a click of the login button
     const loginButton = wrapper.find("[data-test='login-button']");
