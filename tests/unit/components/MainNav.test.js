@@ -28,34 +28,24 @@ describe("MainNav", () => {
 
 describe("when user is logged out", () => {
   it("prompts user to sign in", () => {
-    const wrapper = mount(MainNav, {
-      data() {
-        return {
-          isLoggedIn: false,
-        };
-      },
-    });
+    const wrapper = mount(MainNav);
     const loginButton = wrapper.find("[data-test='login-button']");
-    const profileImage = wrapper.find("[data-test='profile-image']");
     //returns a boolean 
     expect(loginButton.exists()).toBe(true);
-    expect(profileImage.exists()).toBe(false);
   });
 });
 
 describe("when user logs in", () => {
-  it("displays user profile image", () => {
-    const wrapper = mount(MainNav, {
-      data() {
-        return {
-          isLoggedIn: true,
-        };
-      },
-    });
+  //make this function async to make sure the component is mounted and rendered first
+  it("displays user profile image", async() => {
+    const wrapper = mount(MainNav);
+    let profileImage = wrapper.find("[data-test='profile-image']");
+    expect(profileImage.exists()).toBe(false);
+    //simulate a click of the login button
     const loginButton = wrapper.find("[data-test='login-button']");
-    const profileImage = wrapper.find("[data-test='profile-image']");
-    //returns a boolean 
-    expect(loginButton.exists()).toBe(false);
+    await loginButton.trigger("click");
+    //search the template again for the profile image
+    profileImage = wrapper.find("[data-test='profile-image']");
     expect(profileImage.exists()).toBe(true);
   });
 });
