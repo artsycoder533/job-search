@@ -11,9 +11,7 @@ export default {
   computed: {
     buttonClass() {
       return {
-        primary: this.type === "primary",
-        //do this so that only one or the other will be true
-        secondary: this.type === "secondary",
+        [this.type]: true,
       };
     },
   },
