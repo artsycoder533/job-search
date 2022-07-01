@@ -15,7 +15,11 @@ export default {
     type: {
       type: String,
       required: false,
-      default: "primary"
+      default: "primary",
+      // mandates that primary or secondary is the value of the type prop
+      validator(value) {
+        return ["primary", "secondary"].includes(value)
+      }
     },
   },
   computed: {
