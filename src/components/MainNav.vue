@@ -1,18 +1,35 @@
 <template>
   <header class="w-full text-sm">
-    <div class=" w-full h-16 bg-white">
-      <div class="flex flex-nowrap h-full px-8 mx-auto border-b border-solid border-brand-gray-1">
-        <a :href="url" class="flex items-center h-full text-xl">{{ company }}</a>
+    <div class="w-full h-16 bg-white">
+      <div
+        class="flex flex-nowrap h-full px-8 mx-auto border-b border-solid border-brand-gray-1"
+      >
+        <a :href="url" class="flex items-center h-full text-xl">{{
+          company
+        }}</a>
         <nav class="h-full ml-12">
           <ul class="flex h-full p-0 m-0 list-none">
-            <li v-for="menuItem in menuItems" :key="menuItem" class="h-full ml-9 first:ml-0" data-test="main-nav-list-item"> 
-              <a href="" class="flex items-center h-full py-2.5 ">{{ menuItem }}</a>
+            <li
+              v-for="menuItem in menuItems"
+              :key="menuItem"
+              class="h-full ml-9 first:ml-0"
+              data-test="main-nav-list-item"
+            >
+              <a href="" class="flex items-center h-full py-2.5">{{
+                menuItem
+              }}</a>
             </li>
           </ul>
         </nav>
         <div class="flex items-center h-full ml-auto">
-          <profile-image v-if="isLoggedIn" data-test="profile-image"/>
-          <action-button v-else text="Sign In" data-test="login-button" @click="loginUser"/>
+          <profile-image v-if="isLoggedIn" data-test="profile-image" />
+          <action-button
+            v-else
+            text="Sign In"
+            :is-primary="false"
+            data-test="login-button"
+            @click="loginUser"
+          />
         </div>
       </div>
     </div>
@@ -33,14 +50,21 @@ export default {
     return {
       company: "Natasha's Careers",
       url: "https://careers.google.com",
-      menuItems: ["Teams", "Locations", "Life at Natasha", "How We Hire", "Students", "Jobs"],
+      menuItems: [
+        "Teams",
+        "Locations",
+        "Life at Natasha",
+        "How We Hire",
+        "Students",
+        "Jobs",
+      ],
       isLoggedIn: false,
     };
   },
   methods: {
     loginUser() {
       this.isLoggedIn = true;
-    }
-  }
+    },
+  },
 };
 </script>
