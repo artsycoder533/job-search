@@ -7,6 +7,7 @@
         <a :href="url" class="flex items-center h-full text-xl">{{
           company
         }}</a>
+        
         <nav class="h-full ml-12">
           <ul class="flex h-full p-0 m-0 list-none">
             <li
@@ -33,7 +34,9 @@
           />
         </div>
       </div>
-      <subnav />
+
+      <subnav v-if="isLoggedIn"/>
+
     </div>
   </header>
 </template>
