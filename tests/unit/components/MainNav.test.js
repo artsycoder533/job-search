@@ -1,15 +1,16 @@
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 
 import MainNav from '@/components/MainNav.vue';
 
 describe("MainNav", () => {
   it("displays company name", async() => {
-    const wrapper = mount(MainNav);
+    // mouny also mounts all of its children
+    const wrapper = shallowMount(MainNav);
     expect(wrapper.text()).toMatch("Natasha's Careers");
   });
 
   it("displays menu items for navigation", () => {
-    const wrapper = mount(MainNav);
+    const wrapper = shallowMount(MainNav);
     // find all elements by an attribute
     const navigationMenuItems = wrapper.findAll("[data-test='main-nav-list-item']");
     // map through the array that findAll returns and pull out the text of each li into an array
@@ -28,7 +29,7 @@ describe("MainNav", () => {
 
 describe("when user is logged out", () => {
   it("prompts user to sign in", () => {
-    const wrapper = mount(MainNav);
+    const wrapper = shallowMount(MainNav);
     const loginButton = wrapper.find("[data-test='login-button']");
     //returns a boolean 
     expect(loginButton.exists()).toBe(true);
@@ -38,7 +39,7 @@ describe("when user is logged out", () => {
 describe("when user logs in", () => {
   //make this function async to make sure the component is mounted and rendered first
   it("displays user profile image", async() => {
-    const wrapper = mount(MainNav);
+    const wrapper = shallowMount(MainNav);
     let profileImage = wrapper.find("[data-test='profile-image']");
     //check that profile image is not shown initially
     expect(profileImage.exists()).toBe(false);
